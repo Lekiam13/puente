@@ -1,0 +1,14 @@
+services:
+  puente:
+    build: .
+    image: puente:latest
+    restart: unless-stopped
+    ports:
+      - "8070:8070"
+    environment:
+      PUENTE_PEERS: ${PUENTE_PEERS:?Define PUENTE_PEERS en .env (ver .env.example)}
+    volumes:
+      - puente-data:/data
+
+volumes:
+  puente-data:
